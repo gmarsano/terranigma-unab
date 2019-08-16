@@ -23,6 +23,7 @@ public class CharacterFactory {
 	
 	public Character newCharacter(String type) {
 		Character response;
+		// personajes disponibles
 		switch(type) {
 			case "Ark":
 				response = new Ark();
