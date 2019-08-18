@@ -60,10 +60,13 @@ public abstract class Character implements CanQueue {
 	 */
 	public void takeDamage(int value) {
 		String message;
-		int dmg = value - this.getDef();
 		
-		if (dmg <= 0) {
-			dmg = 1;
+		// La defensa será el porcentaje de protección ante un ataque, el porcentaje no cubierto será el daño real
+		int dmg = value - Math.round((value * this.getDef())/100);
+		
+		// En caso de que el dmg calculado sea <= 4 se considera un daño mínimo de 5 puntos de vida
+		if (dmg <= 4) {
+			dmg = 5;
 		}
 		
 		this.setHp(this.getHp() - dmg);
