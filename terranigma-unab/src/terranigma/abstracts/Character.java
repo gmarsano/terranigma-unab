@@ -269,6 +269,9 @@ public abstract class Character implements CanQueue {
 		};
 		String response;
 		
+		this.dequeue();
+		this.enqueue();
+		
 		this.say(this.actMessage);
 		this.showStats();
 		
@@ -276,10 +279,13 @@ public abstract class Character implements CanQueue {
 		
 		if (response.equals(options[0])) {
 			this.attack();
+			this.setCt(this.getCt() - 100);
 		} else if(response.equals(options[1])) {
 			this.ability();
+			this.setCt(this.getCt() - 100);
 		} else if(response.equals(options[2])) {
 			this.defend();
+			this.setCt(this.getCt() - 50);
 		}
 	}
 
@@ -294,5 +300,19 @@ public abstract class Character implements CanQueue {
 		// TODO Auto-generated method stub
 		this.setCt(this.ct + this.sp);
 	}
+
+	@Override
+	public void enqueue() {
+		// TODO Auto-generated method stub
+		Terranigma.get().enqueue(this);
+	}
+
+	@Override
+	public void dequeue() {
+		// TODO Auto-generated method stub
+		Terranigma.get().dequeue(this);
+	}
+	
+	
 
 }

@@ -90,4 +90,12 @@ public class Terranigma {
 			this.actionQueue.get(0).act();
 		}
 	}
+	
+	public void enqueue(CanQueue obj) {
+		this.actionQueue.add(obj);
+	}
+	
+	public void dequeue(CanQueue obj) {
+		this.actionQueue.remove(obj);
+	}
 }

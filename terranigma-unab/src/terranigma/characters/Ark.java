@@ -18,8 +18,6 @@ public class Ark extends Character {
 		// TODO Auto-generated method stub
 		String message;
 		
-		this.setCt(this.getCt() - 100);
-		
 		int dmg = (int) Math.round(this.str*0.2*this.sp);
 		
 		message = this.name + " ha lanzado un ataque!";
