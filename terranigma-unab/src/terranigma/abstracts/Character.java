@@ -62,6 +62,10 @@ public abstract class Character implements CanQueue {
 		String message;
 		int dmg = value - this.getDef();
 		
+		if (dmg <= 0) {
+			dmg = 1;
+		}
+		
 		this.setHp(this.getHp() - dmg);
 		if (this.getHp() < 0) {
 			this.setHp(0);
