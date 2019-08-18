@@ -9,23 +9,23 @@ public abstract class Character implements CanQueue {
 	protected String playerName;
 	protected String actMessage;
 	// health points
-	protected int hp;
+	private int hp;
 	// max health points
-	protected int maxHp;
+	private int maxHp;
 	// magic points
-	protected int mp;
+	private int mp;
 	// max magic points
-	protected int maxMp;
+	private int maxMp;
 	// strength
-	protected int str;
+	private int str;
 	// defense
-	protected int def;
+	private int def;
 	// wisdom
-	protected int wis;
+	private int wis;
 	// speed
-	protected int sp;
+	private int sp;
 	// charge time
-	protected int ct = 0;
+	private int ct = 0;
 	protected Character enemy;
 	
 	
@@ -53,13 +53,18 @@ public abstract class Character implements CanQueue {
 		
 	}
 	
+	/**
+	 * Maneja el daño recibido.
+	 * 
+	 * @param value
+	 */
 	public void takeDamage(int value) {
 		String message;
-		int dmg = value - this.def;
+		int dmg = value - this.getDef();
 		
-		this.setHp(this.hp - dmg);
-		if (this.hp < 0) {
-			this.hp = 0;
+		this.setHp(this.getHp() - dmg);
+		if (this.getHp() < 0) {
+			this.setHp(0);
 		}
 		
 		message = this.name + " ha recibido " + dmg + " de daño.";
@@ -68,6 +73,24 @@ public abstract class Character implements CanQueue {
 		if (!this.isAlive()) {
 			this.derrotado();
 		}
+	}
+	
+	/**
+	 * Maneja la curación recibida.
+	 * 
+	 * @param value
+	 */
+	public void takeHeal(int value) {
+		String message;
+		int heal = value;
+		
+		this.setHp(this.getHp() + heal);
+		if (this.getHp() > this.getMaxHp()) {
+			this.setHp(this.getMaxHp());
+		}
+		
+		message = this.name + " ha recibido " + heal + " de curación.";
+		UI.get().message(message);
 	}
 	
 	public void say(String message) {
@@ -81,7 +104,10 @@ public abstract class Character implements CanQueue {
 	public void showStats() {
 		String[][] table = new String[1][];
 		// table[0] = new String[] {this.name, "", "", ""};
-		table[0] = new String[] {"HP:", this.hp+"/"+this.maxHp, "MP:", this.mp+"/"+this.maxMp};
+		table[0] = new String[] {
+				"HP:", this.getHp()+"/"+this.getMaxHp(),
+				"MP:", this.getMp()+"/"+this.getMaxMp()
+				};
 		
 		UI.get().showCharStats(table);
 	}
@@ -97,7 +123,7 @@ public abstract class Character implements CanQueue {
 	 * @return true, si está vivo; false, si está muerto
 	 */
 	public boolean isAlive() {
-		if (this.hp < 1) {
+		if (this.getHp() < 1) {
 			return false;
 		}
 		
@@ -298,7 +324,7 @@ public abstract class Character implements CanQueue {
 	@Override
 	public void trigger() {
 		// TODO Auto-generated method stub
-		this.setCt(this.ct + this.sp);
+		this.setCt(this.getCt() + this.getSp());
 	}
 
 	@Override

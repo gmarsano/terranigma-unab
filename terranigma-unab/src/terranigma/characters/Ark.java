@@ -18,7 +18,7 @@ public class Ark extends Character {
 		// TODO Auto-generated method stub
 		String message;
 		
-		int dmg = (int) Math.round(this.str*0.2*this.sp);
+		int dmg = (int) Math.round(this.getStr()*0.2*this.getSp());
 		
 		message = this.name + " ha lanzado un ataque!";
 		UI.get().message(message);
