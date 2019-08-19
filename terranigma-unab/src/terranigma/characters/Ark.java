@@ -23,7 +23,7 @@ public class Ark extends Character {
 		// TODO Auto-generated method stub
 		String message;
 		// Configuración del poder de ataque
-		int dmg = (int) Math.round(0.4*this.getStr()*0.3*this.getSp());
+		int dmg = (int) Math.round(0.2*this.getStr()*0.3*this.getSp());
 		
 		message = this.name + " ha lanzado un ataque!";
 		UI.get().message(message);
