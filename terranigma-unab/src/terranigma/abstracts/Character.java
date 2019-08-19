@@ -32,6 +32,7 @@ public abstract class Character implements CanQueue {
 	private int ct = 0;
 	protected Character enemy;
 	protected List<Effect> effects;
+	protected List<Ability> abilities;
 	
 	
 	public Character(
@@ -51,16 +52,50 @@ public abstract class Character implements CanQueue {
 		this.sp = sp;
 		
 		this.effects = new ArrayList<Effect>();
+		this.abilities = new ArrayList<Ability>();
 	}
 	
 	abstract public void attack();
-	abstract public void ability();
+	
+	public void ability() {
+		String response;
+		String message = "Seleccione habilidad:";
+		String[] options = this.getAbilitiesNames();
+		
+		UI.get().message(message);
+		response = UI.get().getListResponse(options);
+		
+		this.getAbilityByName(response).use();
+	}
 	
 	public void defend() {
 		this.setHp(this.getHp() + 10);
 		this.setMp(this.getMp() + 10);
 		Effect e = EffectFactory.get().newEffect("Defensa", this, this);
 		e.enqueue();
+	}
+	
+	
+	public String[] getAbilitiesNames() {
+		String[] names = new String[this.abilities.size()];
+		List<String> list = new ArrayList<String>();
+		
+		for (Ability a : this.abilities) {
+			list.add(a.getName());
+		}
+		
+		list.toArray(names);
+		
+		return names;
+	}
+	
+	public Ability getAbilityByName(String name) {
+		for (Ability a : this.abilities) {
+			if (a.getName().contentEquals(name)) {
+				return a;
+			}
+		}
+		return null;
 	}
 	
 	/**
@@ -321,7 +356,7 @@ public abstract class Character implements CanQueue {
 	 * @return the enemy
 	 */
 	public Character getEnemy() {
-		return enemy;
+		return this.enemy;
 	}
 
 	/**

@@ -27,10 +27,4 @@ public class Ark extends Character {
 		this.enemy.takeDamage(dmg);
 	}
 
-	@Override
-	public void ability() {
-		// TODO Auto-generated method stub
-
-	}
-
 }

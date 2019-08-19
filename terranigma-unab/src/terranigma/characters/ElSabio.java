@@ -1,5 +1,6 @@
 package terranigma.characters;
 
+import terranigma.abilities.ToxicGas;
 import terranigma.abstracts.Character;
 import userInterface.UI;
 
@@ -12,6 +13,7 @@ public class ElSabio extends Character {
 				// hp, mp, str, def, wis, sp
 				70, 70, 50, 60, 40, 10
 				);
+		this.abilities.add(new ToxicGas(this));
 	}
 
 	@Override
@@ -28,11 +30,6 @@ public class ElSabio extends Character {
 		this.enemy.takeDamage(dmg);
 	}
 
-	@Override
-	public void ability() {
-		// TODO Auto-generated method stub
-		
-	}
 	
 	// sobreescribimos la propiedad de sanación del personaje Sabio
 	@Override
