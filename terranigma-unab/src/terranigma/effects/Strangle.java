@@ -2,6 +2,7 @@ package terranigma.effects;
 
 import terranigma.abstracts.Character;
 import terranigma.abstracts.Effect;
+import userInterface.UI;
 
 public class Strangle extends Effect {
 	
@@ -13,19 +14,23 @@ public class Strangle extends Effect {
 	@Override
 	public void apply() {
 		// TODO Auto-generated method stub
-
+		Character target = this.getTarget();
+		
+		int dmg = (int) Math.round(5 + 0.8*this.getCaller().getStr());
+		String message = target.getName() + " estás siendo estrangulado.";
+		
+		UI.get().message(message);
+		target.takeDamage(dmg);
 	}
 
 	@Override
 	public void unapply() {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void updateMessage() {
 		// TODO Auto-generated method stub
-		
 	}
 
 }
