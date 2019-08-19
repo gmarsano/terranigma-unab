@@ -4,6 +4,7 @@ public abstract class Ability {
 	protected Character caller;
 	protected Character target;
 	protected String name;
+	protected int cost = 0;
 	
 	public Ability (Character caller, String name) {
 		this.caller = caller;

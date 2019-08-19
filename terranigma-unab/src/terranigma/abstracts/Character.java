@@ -149,8 +149,18 @@ public abstract class Character implements CanQueue {
 		UI.get().message(message);
 	}
 	
+	public void consumeMp(int value) {
+		String message;
+		int fall = value;
+		
+		this.setMp(this.getMp() - fall);
+		
+		message = this.name + " ha usado " + fall + " de MP.";
+		UI.get().message(message);
+	}
+	
 	public void say(String message) {
-		message = this.name + "(" + this.playerName + "): " + message;
+		message = "\n" + this.name + "(" + this.playerName + "): " + message;
 		UI.get().message(message);
 	}
 	

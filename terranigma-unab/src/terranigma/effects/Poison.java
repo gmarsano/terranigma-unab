@@ -9,7 +9,7 @@ public class Poison extends Effect {
 	public Poison(Character caller, Character target, String name) {
 		// caller, target, name, sp, instant, times, stack
 		super(caller, target, name, 10, false, 4);
-		this.setCt(40);
+		this.setCt(8);
 	}
 
 	@Override
