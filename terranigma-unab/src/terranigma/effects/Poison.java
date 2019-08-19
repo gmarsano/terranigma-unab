@@ -16,7 +16,7 @@ public class Poison extends Effect {
 	public void apply() {
 		// TODO Auto-generated method stub
 		Character target = this.getTarget();
-		int dmg = (int) Math.round(5 + 0.8*this.getCaller().getWis());
+		int dmg = (int) Math.round(15 + 0.8*this.getCaller().getWis());
 		String message = target.getName() + " está envenenado.";
 		
 		UI.get().message(message);

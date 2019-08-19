@@ -1,5 +1,6 @@
 package terranigma.characters;
 
+import terranigma.abilities.Meditate;
 import terranigma.abilities.ToxicGas;
 import terranigma.abstracts.Character;
 import userInterface.UI;
@@ -11,9 +12,10 @@ public class ElSabio extends Character {
 				name, playerName,
 				"Evita las condiciones desfavorables.",
 				// hp, mp, str, def, wis, sp
-				70, 70, 50, 60, 40, 8
+				368, 320, 60, 40, 100, 8
 				);
 		this.abilities.add(new ToxicGas(this));
+		this.abilities.add(new Meditate(this));
 	}
 
 	@Override

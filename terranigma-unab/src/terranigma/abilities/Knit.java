@@ -16,8 +16,8 @@ public class Knit extends Ability {
 	@Override
 	public void use() {
 		// TODO Auto-generated method stub
-		this.cost = 30;
-		if(this.getCaller().getMp() < 30) {
+		this.cost = 60;
+		if(this.getCaller().getMp() < this.cost) {
 			UI.get().message("Estrangular no hace efecto. No hay suficiente MP");
 			return;
 		}
@@ -25,7 +25,7 @@ public class Knit extends Ability {
 		Effect e = EffectFactory.get().newEffect("Estrangular", this.getCaller(), this.getCaller().getEnemy());
 		e.enqueue();
 		
-		this.getCaller().consumeMp(30);
+		this.getCaller().consumeMp(this.cost);
 	}
 
 }

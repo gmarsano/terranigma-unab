@@ -1,5 +1,7 @@
 package terranigma.characters;
 
+import terranigma.abilities.Knit;
+import terranigma.abilities.Meditate;
 import terranigma.abstracts.Character;
 import userInterface.UI;
 
@@ -10,8 +12,10 @@ public class Naomi extends Character {
 				name, playerName,
 				"Disfruta de tu último tiempo feliz.",
 				// hp, mp, str, def, wis, sp
-				90, 30, 70, 80, 15, 11
+				400, 200, 140, 40, 58, 11
 				);
+		this.abilities.add(new Knit(this));
+		this.abilities.add(new Meditate(this));
 	}
 
 	@Override

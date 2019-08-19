@@ -16,16 +16,16 @@ public class ToxicGas extends Ability {
 	@Override
 	public void use() {
 		// TODO Auto-generated method stub
-		this.cost = 30;
+		this.cost = 60;
 		
-		if(this.getCaller().getMp() < 30) {
+		if(this.getCaller().getMp() < this.cost) {
 			UI.get().message("El veneno no hace efecto. No hay suficiente MP");
 			return;
 		}
 			
 		Effect e = EffectFactory.get().newEffect("Veneno", this.getCaller(), this.getCaller().getEnemy());
 		e.enqueue();
-		this.getCaller().consumeMp(30);
+		this.getCaller().consumeMp(this.cost);
 	}
 
 }
