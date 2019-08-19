@@ -96,6 +96,8 @@ public class Terranigma {
 	}
 	
 	public void dequeue(CanQueue obj) {
-		this.actionQueue.remove(obj);
+		if (this.actionQueue.contains(obj)) {
+			this.actionQueue.remove(obj);			
+		}
 	}
 }

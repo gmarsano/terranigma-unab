@@ -1,6 +1,10 @@
 package terranigma.abstracts;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import terranigma.Terranigma;
+import terranigma.factories.EffectFactory;
 import terranigma.interfaces.CanQueue;
 import userInterface.UI;
 
@@ -27,6 +31,7 @@ public abstract class Character implements CanQueue {
 	// charge time
 	private int ct = 0;
 	protected Character enemy;
+	protected List<Effect> effects;
 	
 	
 	public Character(
@@ -44,13 +49,18 @@ public abstract class Character implements CanQueue {
 		this.def = def;
 		this.wis = wis;
 		this.sp = sp;
+		
+		this.effects = new ArrayList<Effect>();
 	}
 	
 	abstract public void attack();
 	abstract public void ability();
 	
 	public void defend() {
-		
+		this.setHp(this.getHp() + 10);
+		this.setMp(this.getMp() + 10);
+		Effect e = EffectFactory.get().newEffect("Defensa", this, this);
+		e.enqueue();
 	}
 	
 	/**
@@ -106,11 +116,19 @@ public abstract class Character implements CanQueue {
 	 * Muestra información del estado del personaje
 	 */
 	public void showStats() {
-		String[][] table = new String[1][];
+		String[][] table = new String[3][];
 		// table[0] = new String[] {this.name, "", "", ""};
 		table[0] = new String[] {
 				"HP:", this.getHp()+"/"+this.getMaxHp(),
 				"MP:", this.getMp()+"/"+this.getMaxMp()
+				};
+		table[1] = new String[] {
+				"str:", Integer.toString(this.getStr()),
+				"def:", Integer.toString(this.getDef())
+				};
+		table[2] = new String[] {
+				"wis:", Integer.toString(this.getWis()),
+				"sp:", Integer.toString(this.getSp())
 				};
 		
 		UI.get().showCharStats(table);
@@ -145,7 +163,11 @@ public abstract class Character implements CanQueue {
 	 * @param hp the hp to set
 	 */
 	public void setHp(int hp) {
-		this.hp = hp;
+		if (hp > this.maxHp) {
+			this.hp = this.maxHp;
+		} else {
+			this.hp = hp;			
+		}
 	}
 	
 	/**
@@ -173,7 +195,11 @@ public abstract class Character implements CanQueue {
 	 * @param mp the mp to set
 	 */
 	public void setMp(int mp) {
-		this.mp = mp;
+		if (mp > this.maxMp) {
+			this.mp = this.maxMp;
+		} else {
+			this.mp = mp;			
+		}
 	}
 	
 	/**
@@ -299,9 +325,6 @@ public abstract class Character implements CanQueue {
 		};
 		String response;
 		
-		this.dequeue();
-		this.enqueue();
-		
 		this.say(this.actMessage);
 		this.showStats();
 		
@@ -315,8 +338,11 @@ public abstract class Character implements CanQueue {
 			this.setCt(this.getCt() - 100);
 		} else if(response.equals(options[2])) {
 			this.defend();
-			this.setCt(this.getCt() - 50);
+			this.setCt(this.getCt() - 60);
 		}
+		
+		this.dequeue();
+		this.enqueue();
 	}
 
 	@Override
@@ -343,6 +369,38 @@ public abstract class Character implements CanQueue {
 		Terranigma.get().dequeue(this);
 	}
 	
+	public Effect findEffect(String name) {
+		for (Effect e: this.effects) {
+			if (e.getName().equals(name)) {
+				return e;
+			}
+		}
+		return null;
+	}
 	
+	public boolean hasEffect(String name) {
+		for (Effect e: this.effects) {
+			if (e.getName().equals(name)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean hasEffect(Effect e) {
+		return this.effects.contains(e);
+	}
+	
+	public void addEffect(Effect e) {
+		if(!this.hasEffect(e)) {
+			this.effects.add(e);
+		}
+	}
+	
+	public void unlistEffect(Effect e) {
+		if (this.hasEffect(e)) {
+			this.effects.remove(e);			
+		}
+	}
 
 }
