@@ -1,5 +1,6 @@
 package terranigma.characters;
 
+import terranigma.abilities.Agility;
 import terranigma.abstracts.Character;
 import userInterface.UI;
 
@@ -12,6 +13,7 @@ public class Ark extends Character {
 				// hp, mp, str, def, wis, sp
 				110, 30, 80, 50, 10, 10
 				);
+		this.abilities.add(new Agility(this));
 	}
 
 	@Override

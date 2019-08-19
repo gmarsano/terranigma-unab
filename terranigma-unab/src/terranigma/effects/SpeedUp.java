@@ -20,7 +20,7 @@ public class SpeedUp extends Effect {
 		efectMessage(message);
 		
 		//modifica el atributo speed del personaje
-		this.setSp(this.getSp() + 2);
+		target.setSp(target.getSp() + 2);
 		
 	}
 
