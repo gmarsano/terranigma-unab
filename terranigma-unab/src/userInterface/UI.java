@@ -95,7 +95,7 @@ public class UI {
 	
 	public void showCharStats(String[][] table) {
 		for (Object[] row : table) {
-		    System.out.format("%-6s%-12s%-6s%-8s\n", row);
+		    System.out.format("%-6s%-12s%-6s%-8s%-6s%-8s%-6s%-8s%-6s%-8s%-6s%-8s\n", row);
 		}
 	}
 }

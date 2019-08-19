@@ -87,13 +87,15 @@ public abstract class Character implements CanQueue {
 	 * 
 	 * @param value
 	 */
+	// Considera la propiead de sanación de los personajes y le asigna los puntos de vida recibidos
 	public void takeHeal(int value) {
 		String message;
 		int heal = value;
 		
 		this.setHp(this.getHp() + heal);
 		if (this.getHp() > this.getMaxHp()) {
-			this.setHp(this.getMaxHp());
+			// incrementa los Health Points 
+			this.setMaxHp(this.getHp());
 		}
 		
 		message = this.name + " ha recibido " + heal + " de curación.";
@@ -113,7 +115,11 @@ public abstract class Character implements CanQueue {
 		// table[0] = new String[] {this.name, "", "", ""};
 		table[0] = new String[] {
 				"HP:", this.getHp()+"/"+this.getMaxHp(),
-				"MP:", this.getMp()+"/"+this.getMaxMp()
+				"MP:", this.getMp()+"/"+this.getMaxMp(),
+				"STR:",Integer.toString(this.getStr()),
+				"DEF:",Integer.toString(this.getDef()),
+				"WIS:",Integer.toString(this.getWis()),
+				"SP:",Integer.toString(this.getSp())
 				};
 		
 		UI.get().showCharStats(table);
@@ -298,7 +304,8 @@ public abstract class Character implements CanQueue {
 		String[] options = {
 				"Atacar",
 				"Habilidad",
-				"Defender"
+				"Defender",
+				"Sanacion"
 		};
 		String response;
 		
@@ -319,6 +326,9 @@ public abstract class Character implements CanQueue {
 		} else if(response.equals(options[2])) {
 			this.defend();
 			this.setCt(this.getCt() - 50);
+		} else if(response.equals(options[3])) {
+			this.takeHeal(20);
+			this.setCt(this.getCt() - 60);
 		}
 	}
 

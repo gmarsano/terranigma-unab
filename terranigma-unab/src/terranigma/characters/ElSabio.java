@@ -32,5 +32,32 @@ public class ElSabio extends Character {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	// sobreescribimos la propiedad de sanación del personaje Sabio
+	@Override
+	public void takeHeal(int value) {
+		String message;
+		int heal; 
+		int pm = this.getMp();
+		
+		// Si tiene puntos de magia incrementamos la sanación y bajamos puntos de magia
+		if (pm >= 20) {
+			heal = value + 30;
+			this.setMp(pm - 20);
+		}
+		else {
+			heal = value;
+		}
+		
+		this.setHp(this.getHp() + heal);
+		
+		if (this.getHp() > this.getMaxHp()) {
+			// incrementa los Health Points 
+			this.setMaxHp(this.getHp());
+		}
+		
+		message = this.name + " ha recibido " + heal + " de curación.";
+		UI.get().message(message);
+	}
 
 }
