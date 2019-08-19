@@ -6,6 +6,7 @@ import terranigma.abstracts.Effect;
 public class Strangle extends Effect {
 	
 	public Strangle(Character caller, Character target, String name) {
+		// caller, target, name, sp, instant, times, stack
 		super(caller, target, name, 8, true, 3);
 	}
 

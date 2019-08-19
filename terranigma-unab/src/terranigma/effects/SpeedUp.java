@@ -6,6 +6,7 @@ import terranigma.abstracts.Effect;
 public class SpeedUp extends Effect {
 	
 	public SpeedUp(Character caller, Character target, String name) {
+		// caller, target, name, sp, instant, times, stack
 		super(caller, target, name, 100);
 	}
 

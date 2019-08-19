@@ -69,16 +69,11 @@ public abstract class Character implements CanQueue {
 	 * @param value
 	 */
 	public void takeDamage(int value) {
-		String message;
-		int dmg = value - this.getDef();
+		String message;		
+		int dmg = value - Math.round((value * this.getDef())/100);
 		
-		if (dmg <= 0) {
-			dmg = 1;
-		}
-		
-		this.setHp(this.getHp() - dmg);
-		if (this.getHp() < 0) {
-			this.setHp(0);
+		if (dmg <= 4) {
+			dmg = 5;
 		}
 		
 		message = this.name + " ha recibido " + dmg + " de daño.";
@@ -227,7 +222,11 @@ public abstract class Character implements CanQueue {
 	 * @param str the str to set
 	 */
 	public void setStr(int str) {
-		this.str = str;
+		if (str > 100) {
+			this.str = 100;
+		}else {
+			this.str = str;
+		}
 	}
 
 	/**
@@ -241,7 +240,11 @@ public abstract class Character implements CanQueue {
 	 * @param def the def to set
 	 */
 	public void setDef(int def) {
-		this.def = def;
+		if (def > 90) {
+			this.def = 90;
+		} else {
+			this.def = def;
+		}
 	}
 
 	/**
@@ -255,7 +258,11 @@ public abstract class Character implements CanQueue {
 	 * @param wis the wis to set
 	 */
 	public void setWis(int wis) {
-		this.wis = wis;
+		if (wis > 100) {
+			this.wis = 100;
+		} else {
+			this.wis = wis;
+		}
 	}
 
 	/**
@@ -269,7 +276,11 @@ public abstract class Character implements CanQueue {
 	 * @param sp the sp to set
 	 */
 	public void setSp(int sp) {
-		this.sp = sp;
+		if (sp > 100) {
+			this.sp = 100;
+		} else {
+			this.sp = sp;
+		}
 	}
 
 	/**

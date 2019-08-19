@@ -18,7 +18,7 @@ public class Defense extends Effect {
 		
 		if (this.isRepeat()) {
 			this.setRepeat(false);
-			target.setDef(target.getDef() + 5);
+			target.setDef(target.getDef() + 10);
 			
 			efectMessage(message);
 		}
@@ -30,7 +30,7 @@ public class Defense extends Effect {
 		Character target = this.getTarget();
 		String message = target.getName() + " ha dejado la posición defensiva.";
 		
-		target.setDef(target.getDef() - 5);
+		target.setDef(target.getDef() - 10);
 		
 		efectMessage(message);
 	}
