@@ -49,8 +49,35 @@ public abstract class Character implements CanQueue {
 	abstract public void attack();
 	abstract public void ability();
 	
-	public void defend() {
+	// Modo defensa de los personajes, lo usaremos para aumentar las capacidades de defensa
+	public void defend(int def) {
+		String message;
 		
+		// Consideramos que ningun personaje puede tener mas del 90 porc. en defensa
+		int defensa = this.getDef(); 
+		if (defensa <= 70) {
+			this.setDef(defensa + def);
+			message = this.name + " ha recibido " + def + " puntos de defensa.";
+			UI.get().message(message);
+		}
+		else {
+			message = this.name + " excede la capacidad de defensa. Se aumentarán puntos de Magia";
+			UI.get().message(message);
+			this.magic(Math.round(def));
+		}
+	}
+	
+	public void magic(int mg) {
+		String message;
+
+		this.setMp(this.getMp() + mg);
+		if (this.getMp() > this.getMaxMp()) {
+			// incrementa los Magic Points 
+			this.setMaxMp(this.getMp());
+		}
+		
+		message = this.name + " ha recibido " + mg + " de Magia.";
+		UI.get().message(message);
 	}
 	
 	/**
@@ -87,7 +114,7 @@ public abstract class Character implements CanQueue {
 	 * 
 	 * @param value
 	 */
-	// Considera la propiead de sanación de los personajes y le asigna los puntos de vida recibidos
+	// Considera la propiedad de sanación de los personajes y le asigna los puntos de vida recibidos
 	public void takeHeal(int value) {
 		String message;
 		int heal = value;
@@ -324,7 +351,7 @@ public abstract class Character implements CanQueue {
 			this.ability();
 			this.setCt(this.getCt() - 100);
 		} else if(response.equals(options[2])) {
-			this.defend();
+			this.defend(20);
 			this.setCt(this.getCt() - 50);
 		} else if(response.equals(options[3])) {
 			this.takeHeal(20);
