@@ -10,7 +10,7 @@ public class Naomi extends Character {
 				name, playerName,
 				"Disfruta de tu último tiempo feliz.",
 				// hp, mp, str, def, wis, sp
-				90, 30, 70, 80, 15, 15
+				90, 30, 70, 80, 15, 11
 				);
 	}
 

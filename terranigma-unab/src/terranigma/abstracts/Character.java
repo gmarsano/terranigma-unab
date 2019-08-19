@@ -69,8 +69,8 @@ public abstract class Character implements CanQueue {
 	}
 	
 	public void defend() {
-		this.setHp(this.getHp() + 10);
-		this.setMp(this.getMp() + 10);
+		this.takeHeal(10);
+		this.takeMp(10);
 		Effect e = EffectFactory.get().newEffect("Defensa", this, this);
 		e.enqueue();
 	}
@@ -134,11 +134,18 @@ public abstract class Character implements CanQueue {
 		int heal = value;
 		
 		this.setHp(this.getHp() + heal);
-		if (this.getHp() > this.getMaxHp()) {
-			this.setHp(this.getMaxHp());
-		}
 		
 		message = this.name + " ha recibido " + heal + " de curación.";
+		UI.get().message(message);
+	}
+	
+	public void takeMp(int value) {
+		String message;
+		int rise = value;
+		
+		this.setMp(this.getMp() + rise);
+		
+		message = this.name + " ha recibido " + rise + " de MP.";
 		UI.get().message(message);
 	}
 	
@@ -146,6 +153,7 @@ public abstract class Character implements CanQueue {
 		message = this.name + "(" + this.playerName + "): " + message;
 		UI.get().message(message);
 	}
+	
 	
 	/**
 	 * Muestra información del estado del personaje

@@ -11,7 +11,7 @@ public class ElSabio extends Character {
 				name, playerName,
 				"Evita las condiciones desfavorables.",
 				// hp, mp, str, def, wis, sp
-				70, 70, 50, 60, 40, 10
+				70, 70, 50, 60, 40, 8
 				);
 		this.abilities.add(new ToxicGas(this));
 	}
