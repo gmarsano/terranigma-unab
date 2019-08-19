@@ -9,6 +9,7 @@ public class ElSabio extends Character {
 		super(
 				name, playerName,
 				"Evita las condiciones desfavorables.",
+				// hp, mp, str, def, wis, sp
 				70, 70, 50, 60, 40, 10
 				);
 	}

@@ -9,6 +9,7 @@ public class Ark extends Character {
 		super(
 				name, playerName,
 				"Terminemos esto pronto!",
+				// hp, mp, str, def, wis, sp
 				110, 30, 80, 50, 10, 20
 				);
 	}

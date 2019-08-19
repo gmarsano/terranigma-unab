@@ -76,6 +76,11 @@ public abstract class Character implements CanQueue {
 			dmg = 5;
 		}
 		
+		this.setHp(this.getHp() - dmg);
+		if (this.getHp() < 0) {
+			this.setHp(0);
+		}
+		
 		message = this.name + " ha recibido " + dmg + " de daño.";
 		UI.get().message(message);
 		
