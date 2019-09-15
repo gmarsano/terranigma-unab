@@ -2,8 +2,6 @@ package terranigma.abilities;
 
 import terranigma.abstracts.Ability;
 import terranigma.abstracts.Character;
-import terranigma.abstracts.Effect;
-import terranigma.factories.EffectFactory;
 import userInterface.UI;
 
 public class Meditate extends Ability {
