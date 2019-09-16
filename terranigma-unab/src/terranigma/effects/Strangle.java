@@ -17,7 +17,7 @@ public class Strangle extends Effect {
 		Character target = this.getTarget();
 		
 		int dmg = (int) Math.round(5 + 0.4*this.getCaller().getStr() + 0.2*this.getCaller().getWis());
-		String message = target.getName() + " estás siendo estrangulado.";
+		String message = target.getName() + " está siendo estrangulado.";
 		
 		UI.get().message(message);
 		target.takeDamage(dmg);

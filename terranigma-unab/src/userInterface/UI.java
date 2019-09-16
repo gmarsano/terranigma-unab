@@ -22,7 +22,7 @@ public class UI {
 			System.out.println("1: Terminal");
 			System.out.println("2: GUI");
 			String response = in.nextLine();
-			if (response == "1") {
+			if (response.equals("1")) {
 				singleton = new TerminalUI(in);
 			} else {
 				singleton = new GUI();
