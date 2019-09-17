@@ -55,6 +55,23 @@ public class UI {
 		return type;
 	}
 	
+	public static boolean isGUI() {
+		if (getType().equals(UIType.WBUILDER)) {
+			return true;
+		}
+		
+		return false;
+	}
+	
+	public static GUI getGUI() {
+		if (isGUI()) {
+			if(singleton instanceof GUI) {
+				return ((GUI)singleton);				
+			}
+		}
+		
+		return null;
+	}
 
 }
 

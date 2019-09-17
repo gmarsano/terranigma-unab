@@ -15,6 +15,10 @@ public class GUI implements UserInterface {
 		this.window.setVisible(true);
 	}
 	
+	/*
+	 * Permite esperar una respuesta del usuario esperando el cambio de estado de
+	 * la variable de sincronización de la vista
+	 */
 	private void waitUserResponse() {
 		JTextField textField = window.getUserInputText();
 		textField.requestFocus();
@@ -89,5 +93,11 @@ public class GUI implements UserInterface {
 		    System.out.format("%-6s%-12s%-6s%-8s\n", row);
 		}
 	}
-
+	
+	/**
+	 * ***** Metodos de GUI para animaciones y visualización de información *****
+	 */
+	
+	
+	
 }
