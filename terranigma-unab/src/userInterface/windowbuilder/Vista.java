@@ -24,8 +24,12 @@ public class Vista extends JFrame {
 	
 	private boolean waitForResponse;
 	private JTextField userInputText;
-	// 
 	private JTextArea infoArea;
+	private JPanel screenPanel;
+	private JScrollPane scrollPane;
+	private JPanel userInputPanel;
+	private JLabel lblChar1;
+	private JLabel lblChar2;
 	
 	/**
 	 * Create the application.
@@ -46,29 +50,43 @@ public class Vista extends JFrame {
 		setBounds(0, 0, 1024, 768);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		JPanel screenPanel = new JPanel();
+		screenPanel = new PanelImagen();
 		screenPanel.setBounds(10, 11, 998, 355);
 		screenPanel.setBackground(Color.BLACK);
 		
-		JScrollPane scrollPane = new JScrollPane();
+		scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 372, 998, 248);
 		
-		JPanel userInputPanel = new JPanel();
+		userInputPanel = new JPanel();
 		userInputPanel.setBounds(10, 626, 998, 103);
 		
-		JLabel lblChar1 = new JLabel("New label");
+		lblChar1 = new JLabel("New label");
 		
-		JLabel lblChar2 = new JLabel("New label");
+		lblChar2 = new JLabel("New label");
 		
-		JTextArea textArea = new JTextArea();
+		JTextArea messageArea = new JTextArea();
+		messageArea.setOpaque(false);
+		messageArea.setEditable(false);
+		
+		JTextArea char1StatsArea = new JTextArea();
+		char1StatsArea.setOpaque(false);
+		char1StatsArea.setEditable(false);
+		
+		JTextArea char2StatsArea = new JTextArea();
+		char2StatsArea.setOpaque(false);
+		char2StatsArea.setEditable(false);
 		GroupLayout gl_screenPanel = new GroupLayout(screenPanel);
 		gl_screenPanel.setHorizontalGroup(
 			gl_screenPanel.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_screenPanel.createSequentialGroup()
+				.addGroup(gl_screenPanel.createSequentialGroup()
 					.addGap(42)
-					.addGroup(gl_screenPanel.createParallelGroup(Alignment.TRAILING)
-						.addComponent(textArea, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 901, Short.MAX_VALUE)
-						.addGroup(Alignment.LEADING, gl_screenPanel.createSequentialGroup()
+					.addGroup(gl_screenPanel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_screenPanel.createSequentialGroup()
+							.addComponent(char1StatsArea, GroupLayout.PREFERRED_SIZE, 313, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 275, Short.MAX_VALUE)
+							.addComponent(char2StatsArea, GroupLayout.PREFERRED_SIZE, 313, GroupLayout.PREFERRED_SIZE))
+						.addComponent(messageArea, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 901, Short.MAX_VALUE)
+						.addGroup(gl_screenPanel.createSequentialGroup()
 							.addComponent(lblChar1, GroupLayout.PREFERRED_SIZE, 219, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED, 442, Short.MAX_VALUE)
 							.addComponent(lblChar2, GroupLayout.PREFERRED_SIZE, 240, GroupLayout.PREFERRED_SIZE)))
@@ -78,11 +96,15 @@ public class Vista extends JFrame {
 			gl_screenPanel.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_screenPanel.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(textArea, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
-					.addGap(38)
+					.addComponent(messageArea, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_screenPanel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(char1StatsArea, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
+						.addComponent(char2StatsArea, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_screenPanel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblChar1, GroupLayout.PREFERRED_SIZE, 207, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblChar2, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE))
+						.addComponent(lblChar2, GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE))
 					.addGap(24))
 		);
 		screenPanel.setLayout(gl_screenPanel);

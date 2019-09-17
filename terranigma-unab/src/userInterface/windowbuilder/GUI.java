@@ -110,7 +110,7 @@ public class GUI implements UserInterface {
 	 * 
 	 */
 	public void gameIntro() {
-		// imagen de fondo
+		
 		
 	}
 	
@@ -120,6 +120,7 @@ public class GUI implements UserInterface {
 	 */
 	public void gameStart(Character char1, Character char2) {
 		// Cargar fondo de batalla
+		window.getContentPane()
 		
 		// Cargar imagenes de personajes
 		

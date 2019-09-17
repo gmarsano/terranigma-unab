@@ -7,12 +7,24 @@ import javax.swing.JPanel;
 
 public class PanelImagen extends JPanel {
 	
+	private ImageIcon imagen;
+	
+	public PanelImagen() {
+		super();
+		
+		this.imagen = new ImageIcon(new ImageIcon(getClass().getResource("/userInterface/windowbuilder/images/terranigma.jpg")).getImage());
+	}
+	
+	public void changeImage(String imgUri) {
+		this.imagen = new ImageIcon(new ImageIcon(getClass().getResource(imgUri)).getImage());
+		repaint();
+	}
+	
 	@Override
 	public void paintComponent (Graphics g){
-		Dimension tam = getSize();
+		Dimension tam = getSize();		
 		
-		ImageIcon imagen = new ImageIcon(new ImageIcon(getClass().getResource("/images/terranigma.jpg")).getImage());
-		g.drawImage(imagen.getImage(),0,0,tam.width,tam.height,null);
+		g.drawImage(this.imagen.getImage(),0,0,tam.width,tam.height,null);
 	}
 }
 
