@@ -2,6 +2,7 @@ package userInterface.windowbuilder;
 
 import java.util.concurrent.TimeUnit;
 
+import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 
 import userInterface.UserInterface;
@@ -119,9 +120,18 @@ public class GUI implements UserInterface {
 	 * 
 	 */
 	public void gameStart(Character char1, Character char2) {
+		this.char1 = char1;
+		this.char2 = char2;
+		
 		// Cargar fondo de batalla
+		window.screenPanel.changeImage("/userInterface/windowbuilder/images/battlefield.png");
 		
 		// Cargar imagenes de personajes
+		ImageIcon icon = new ImageIcon(new ImageIcon(getClass().getResource(char1.getIconUri())).getImage());
+		window.lblChar1.setIcon(icon);
+		
+		icon = new ImageIcon(new ImageIcon(getClass().getResource(char2.getIconUri())).getImage());
+		window.lblChar2.setIcon(icon);
 		
 		// Cargar paneles de atributos
 		

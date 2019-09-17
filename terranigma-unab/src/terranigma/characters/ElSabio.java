@@ -16,6 +16,7 @@ public class ElSabio extends Character {
 				);
 		this.abilities.add(new ToxicGas(this));
 		this.abilities.add(new Meditate(this));
+		this.iconUri = "/userInterface/windowbuilder/images/ElSabio.png";
 	}
 
 	@Override

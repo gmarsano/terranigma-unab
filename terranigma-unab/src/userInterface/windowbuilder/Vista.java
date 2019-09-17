@@ -25,7 +25,7 @@ public class Vista extends JFrame {
 	private boolean waitForResponse;
 	private JTextField userInputText;
 	private JTextArea infoArea;
-	public JPanel screenPanel;
+	public PanelImagen screenPanel;
 	public JScrollPane scrollPane;
 	public JPanel userInputPanel;
 	public JLabel lblChar1;
@@ -64,9 +64,9 @@ public class Vista extends JFrame {
 		userInputPanel = new JPanel();
 		userInputPanel.setBounds(10, 626, 998, 103);
 		
-		lblChar1 = new JLabel("New label");
+		lblChar1 = new JLabel("CHAR 1");
 		
-		lblChar2 = new JLabel("New label");
+		lblChar2 = new JLabel("CHAR 2");
 		
 		messageArea = new JTextArea();
 		messageArea.setOpaque(false);

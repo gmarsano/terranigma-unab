@@ -16,6 +16,7 @@ public class Ark extends Character {
 				);
 		this.abilities.add(new Agility(this));
 		this.abilities.add(new Meditate(this));
+		this.iconUri = "/userInterface/windowbuilder/images/Ark.png";
 	}
 
 	@Override

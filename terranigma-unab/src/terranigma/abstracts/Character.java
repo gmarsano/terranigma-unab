@@ -33,6 +33,7 @@ public abstract class Character implements CanQueue {
 	protected Character enemy;
 	protected List<Effect> effects;
 	protected List<Ability> abilities;
+	protected String iconUri;
 	
 	
 	public Character(
@@ -478,6 +479,20 @@ public abstract class Character implements CanQueue {
 		if (this.hasEffect(e)) {
 			this.effects.remove(e);			
 		}
+	}
+
+	/**
+	 * @return the iconUri
+	 */
+	public String getIconUri() {
+		return iconUri;
+	}
+
+	/**
+	 * @param iconUri the iconUri to set
+	 */
+	public void setIconUri(String iconUri) {
+		this.iconUri = iconUri;
 	}
 
 }

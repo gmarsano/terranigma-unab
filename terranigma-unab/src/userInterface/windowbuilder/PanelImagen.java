@@ -22,6 +22,7 @@ public class PanelImagen extends JPanel {
 	
 	@Override
 	public void paintComponent (Graphics g){
+		super.paintComponent(g);
 		Dimension tam = getSize();		
 		
 		g.drawImage(this.imagen.getImage(),0,0,tam.width,tam.height,null);
