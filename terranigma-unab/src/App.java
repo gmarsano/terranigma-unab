@@ -11,6 +11,7 @@ public class App {
 		try (Scanner in = new Scanner(System.in)) {
 			
 			UI.setIn(in);
+			UI.get();
 			Terranigma.get().play();
 			
 		}

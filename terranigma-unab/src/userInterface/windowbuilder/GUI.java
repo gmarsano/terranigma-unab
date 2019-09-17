@@ -110,6 +110,7 @@ public class GUI implements UserInterface {
 	 * 
 	 */
 	public void gameIntro() {
+		// imagen de fondo
 		
 	}
 	

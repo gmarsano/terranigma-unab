@@ -17,6 +17,8 @@ import java.awt.event.FocusEvent;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Toolkit;
+import javax.swing.JLabel;
+import javax.swing.JTextPane;
 
 public class Vista extends JFrame {
 	
@@ -45,33 +47,45 @@ public class Vista extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel screenPanel = new JPanel();
+		screenPanel.setBounds(10, 11, 998, 355);
 		screenPanel.setBackground(Color.BLACK);
 		
 		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 372, 998, 248);
 		
 		JPanel userInputPanel = new JPanel();
-		GroupLayout groupLayout = new GroupLayout(getContentPane());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(scrollPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 998, Short.MAX_VALUE)
-						.addComponent(userInputPanel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 998, Short.MAX_VALUE)
-						.addComponent(screenPanel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 998, Short.MAX_VALUE))
-					.addContainerGap())
+		userInputPanel.setBounds(10, 626, 998, 103);
+		
+		JLabel lblChar1 = new JLabel("New label");
+		
+		JLabel lblChar2 = new JLabel("New label");
+		
+		JTextArea textArea = new JTextArea();
+		GroupLayout gl_screenPanel = new GroupLayout(screenPanel);
+		gl_screenPanel.setHorizontalGroup(
+			gl_screenPanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, gl_screenPanel.createSequentialGroup()
+					.addGap(42)
+					.addGroup(gl_screenPanel.createParallelGroup(Alignment.TRAILING)
+						.addComponent(textArea, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 901, Short.MAX_VALUE)
+						.addGroup(Alignment.LEADING, gl_screenPanel.createSequentialGroup()
+							.addComponent(lblChar1, GroupLayout.PREFERRED_SIZE, 219, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 442, Short.MAX_VALUE)
+							.addComponent(lblChar2, GroupLayout.PREFERRED_SIZE, 240, GroupLayout.PREFERRED_SIZE)))
+					.addGap(55))
 		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
+		gl_screenPanel.setVerticalGroup(
+			gl_screenPanel.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_screenPanel.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(screenPanel, GroupLayout.PREFERRED_SIZE, 355, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 248, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(userInputPanel, GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-					.addContainerGap())
+					.addComponent(textArea, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
+					.addGap(38)
+					.addGroup(gl_screenPanel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblChar1, GroupLayout.PREFERRED_SIZE, 207, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblChar2, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE))
+					.addGap(24))
 		);
+		screenPanel.setLayout(gl_screenPanel);
 		
 		JButton btnSendInput = new JButton("Enviar");
 		btnSendInput.addActionListener(new UserResponseListener(this));
@@ -93,9 +107,12 @@ public class Vista extends JFrame {
 			public void focusGained(FocusEvent arg0) {
 			}
 		});
+		getContentPane().setLayout(null);
 		infoArea.setEditable(false);
 		scrollPane.setViewportView(infoArea);
-		getContentPane().setLayout(groupLayout);
+		getContentPane().add(scrollPane);
+		getContentPane().add(userInputPanel);
+		getContentPane().add(screenPanel);
 		DefaultCaret caret = (DefaultCaret)infoArea.getCaret();
 		caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
 		
@@ -135,7 +152,4 @@ public class Vista extends JFrame {
 		//this.infoArea.setCaretPosition(this.infoArea.get);
 		
 	}
-	
-	
-	
 }
