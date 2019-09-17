@@ -2,6 +2,7 @@ package userInterface.windowbuilder;
 
 import java.util.concurrent.TimeUnit;
 
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import userInterface.UserInterface;
@@ -65,6 +66,8 @@ public class GUI implements UserInterface {
 	public void message(String message) {
 		// TODO Auto-generated method stub
 		System.out.println(message);
+		// 
+		window.setInfoArea(message + System.lineSeparator());
 	}
 
 	@Override

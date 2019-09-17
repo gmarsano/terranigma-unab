@@ -6,22 +6,32 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.text.DefaultCaret;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Toolkit;
 
 public class Vista extends JFrame {
 	
 	private boolean waitForResponse;
 	private JTextField userInputText;
+	// 
+	private JTextArea infoArea;
 	
 	/**
 	 * Create the application.
 	 */
 	public Vista() {
-		setTitle("Terranigma 2.0");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Vista.class.getResource("/userInterface/windowbuilder/images/terranigma_underworld.jpg")));
+		setBackground(Color.BLACK);
+		setTitle("UNAB - Terranigma 2.0");
 		setResizable(false);
 		initialize();
 	}
@@ -30,10 +40,12 @@ public class Vista extends JFrame {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		setBounds(100, 100, 1024, 700);
+		
+		setBounds(0, 0, 1024, 768);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel screenPanel = new JPanel();
+		screenPanel.setBackground(Color.BLACK);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		
@@ -70,10 +82,23 @@ public class Vista extends JFrame {
 		userInputPanel.add(userInputText);
 		userInputText.setColumns(80);
 		
-		JTextArea infoArea = new JTextArea();
+		//JTextArea infoArea = new JTextArea();
+		// Epavez
+		infoArea = new JTextArea();
+		infoArea.setBackground(Color.BLACK);
+		infoArea.setFont(new Font("Arial", Font.PLAIN, 12));
+		infoArea.setForeground(Color.GREEN);
+		infoArea.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent arg0) {
+			}
+		});
 		infoArea.setEditable(false);
 		scrollPane.setViewportView(infoArea);
 		getContentPane().setLayout(groupLayout);
+		DefaultCaret caret = (DefaultCaret)infoArea.getCaret();
+		caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+		
 	}
 
 	/**
@@ -97,6 +122,19 @@ public class Vista extends JFrame {
 		return userInputText;
 	}
 
+	//
+	public void setInfoArea(JTextArea infoArea) {
+		this.infoArea = infoArea;
+	}
+
+	public void setInfoArea(String message) {
+		// TODO Auto-generated method stub
+		//this.infoArea.setText(message);
+		//message = "<HTML> " + message + "<br>";
+		this.infoArea.append(message);
+		//this.infoArea.setCaretPosition(this.infoArea.get);
+		
+	}
 	
 	
 	
