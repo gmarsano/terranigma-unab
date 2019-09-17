@@ -36,6 +36,10 @@ public class Terranigma {
 	public void play() {
 		String message;
 		
+		if (UI.isGUI()) {
+			UI.getGUI().gameIntro();
+		}
+		
 		if (player1 == null) {
 			message = "Ingrese nombre del jugador 1:";
 			player1 = UI.get().request(message);
@@ -53,6 +57,10 @@ public class Terranigma {
 		
 		this.char1.setEnemy(this.char2);
 		this.char2.setEnemy(this.char1);
+		
+		if (UI.isGUI()) {
+			UI.getGUI().gameStart(this.char1, this.char2);
+		}
 		
 		this.actionQueue.add(this.char1);
 		this.actionQueue.add(this.char2);

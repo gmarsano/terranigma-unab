@@ -2,13 +2,16 @@ package userInterface.windowbuilder;
 
 import java.util.concurrent.TimeUnit;
 
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import userInterface.UserInterface;
 
+import terranigma.abstracts.Character;
+
 public class GUI implements UserInterface {
 	private Vista window;
+	private Character char1;
+	private Character char2;
 	
 	public GUI () {
 		this.window = new Vista();
@@ -89,15 +92,64 @@ public class GUI implements UserInterface {
 	@Override
 	public void showCharStats(String[][] table) {
 		// TODO Auto-generated method stub
-		for (Object[] row : table) {
+		
+		/* for (Object[] row : table) {
 		    System.out.format("%-6s%-12s%-6s%-8s\n", row);
-		}
+		} */
+		
+		// Llamar a función de reemplazo en GUI
+		this.refreshStats();
 	}
 	
 	/**
 	 * ***** Metodos de GUI para animaciones y visualización de información *****
 	 */
 	
+	/**
+	 * Lanza la presentación del juego
+	 * 
+	 */
+	public void gameIntro() {
+		
+	}
 	
+	/**
+	 * Recibe personajes e inicializa la vusualización de la batalla
+	 * 
+	 */
+	public void gameStart(Character char1, Character char2) {
+		// Cargar fondo de batalla
+		
+		// Cargar imagenes de personajes
+		
+		// Cargar paneles de atributos
+		
+		
+	}
+	
+	
+	/**
+	 * Refresca los paneles de información de atributos de los personajes
+	 * 
+	 */
+	public void refreshStats() {
+		
+	}
+	
+	/**
+	 * Animación del personaje al recibir daño
+	 * 
+	 */
+	public void takeDamage() {
+		
+	}
+	
+	/**
+	 * Animación del personaje derrotado al recibir golpe mortal
+	 * 
+	 */
+	public void defeated() {
+		
+	}
 	
 }
