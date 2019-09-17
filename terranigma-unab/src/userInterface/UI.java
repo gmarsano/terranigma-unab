@@ -12,6 +12,7 @@ import userInterface.windowbuilder.GUI;
 public class UI {
 	private static UserInterface singleton = null;
 	private static Scanner in;
+	private static UIType type;
 	
 	
 	public static UserInterface get() {
@@ -24,8 +25,10 @@ public class UI {
 			String response = in.nextLine();
 			if (response.equals("1")) {
 				singleton = new TerminalUI(in);
+				type = UIType.TERMINAL;
 			} else {
 				singleton = new GUI();
+				type = UIType.WBUILDER;
 			}
 		}
 		
@@ -44,6 +47,14 @@ public class UI {
 			UI.in = in;			
 		}
 	}
+
+	/**
+	 * @return the type
+	 */
+	public static UIType getType() {
+		return type;
+	}
+	
 
 }
 
