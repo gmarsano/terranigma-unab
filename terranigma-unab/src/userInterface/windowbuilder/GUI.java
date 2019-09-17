@@ -21,7 +21,7 @@ public class GUI implements UserInterface {
 	
 	/*
 	 * Permite esperar una respuesta del usuario esperando el cambio de estado de
-	 * la variable de sincronización de la vista
+	 * la variable de sincronizaciï¿½n de la vista
 	 */
 	private void waitUserResponse() {
 		JTextField textField = window.getUserInputText();
@@ -59,7 +59,7 @@ public class GUI implements UserInterface {
 				response = list[index];
 				return response;
 			} catch (Exception e) {
-				this.message("Opción inválida. Intente de nuevo...");
+				this.message("Opciï¿½n invï¿½lida. Intente de nuevo...");
 			}
 			
 		}
@@ -98,16 +98,16 @@ public class GUI implements UserInterface {
 		    System.out.format("%-6s%-12s%-6s%-8s\n", row);
 		} */
 		
-		// Llamar a función de reemplazo en GUI
+		// Llamar a funciï¿½n de reemplazo en GUI
 		this.refreshStats();
 	}
 	
 	/**
-	 * ***** Metodos de GUI para animaciones y visualización de información *****
+	 * ***** Metodos de GUI para animaciones y visualizaciï¿½n de informaciï¿½n *****
 	 */
 	
 	/**
-	 * Lanza la presentación del juego
+	 * Lanza la presentaciï¿½n del juego
 	 * 
 	 */
 	public void gameIntro() {
@@ -116,7 +116,7 @@ public class GUI implements UserInterface {
 	}
 	
 	/**
-	 * Recibe personajes e inicializa la vusualización de la batalla
+	 * Recibe personajes e inicializa la vusualizaciï¿½n de la batalla
 	 * 
 	 */
 	public void gameStart(Character char1, Character char2) {
@@ -125,6 +125,7 @@ public class GUI implements UserInterface {
 		
 		// Cargar fondo de batalla
 		window.screenPanel.changeImage("/userInterface/windowbuilder/images/battlefield.png");
+		
 		
 		// Cargar imagenes de personajes
 		ImageIcon icon = new ImageIcon(new ImageIcon(getClass().getResource(char1.getIconUri())).getImage());
@@ -138,17 +139,32 @@ public class GUI implements UserInterface {
 		
 	}
 	
-	
 	/**
-	 * Refresca los paneles de información de atributos de los personajes
+	 * Refresca los paneles de informacion de atributos de los personajes
 	 * 
 	 */
 	public void refreshStats() {
+
+		String message = getCharacterStats(this.char1);
+		window.char1StatsArea.setText(message);
 		
+		message = getCharacterStats(this.char2);
+		window.char2StatsArea.setText(message);
 	}
 	
+	public String getCharacterStats(Character charX) {
+		String message;
+		
+		message = "Jugador: " + charX.getPlayerName() + "Personaje: " + charX.getName();
+		message = message + " HP: " + charX.getHp() + "/" + charX.getMaxHp();
+		message = message + " MP: " + charX.getMp() + "/" + charX.getMaxMp();
+		message = message + " STR: " + charX.getStr() + " DEF: " + charX.getDef();
+		message = message + " WIS: " + charX.getWis() + " SP: " + charX.getSp(); 
+				
+		return message;
+	}
 	/**
-	 * Animación del personaje al recibir daño
+	 * Animacion del personaje al recibir danno
 	 * 
 	 */
 	public void takeDamage() {
@@ -156,7 +172,7 @@ public class GUI implements UserInterface {
 	}
 	
 	/**
-	 * Animación del personaje derrotado al recibir golpe mortal
+	 * Animaciï¿½n del personaje derrotado al recibir golpe mortal
 	 * 
 	 */
 	public void defeated() {
