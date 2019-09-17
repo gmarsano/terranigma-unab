@@ -25,11 +25,15 @@ public class Vista extends JFrame {
 	private boolean waitForResponse;
 	private JTextField userInputText;
 	private JTextArea infoArea;
-	private JPanel screenPanel;
-	private JScrollPane scrollPane;
-	private JPanel userInputPanel;
-	private JLabel lblChar1;
-	private JLabel lblChar2;
+	public JPanel screenPanel;
+	public JScrollPane scrollPane;
+	public JPanel userInputPanel;
+	public JLabel lblChar1;
+	public JLabel lblChar2;
+	public JTextArea messageArea;
+	public JTextArea char1StatsArea;
+	public JTextArea char2StatsArea;
+	
 	
 	/**
 	 * Create the application.
@@ -64,17 +68,18 @@ public class Vista extends JFrame {
 		
 		lblChar2 = new JLabel("New label");
 		
-		JTextArea messageArea = new JTextArea();
+		messageArea = new JTextArea();
 		messageArea.setOpaque(false);
 		messageArea.setEditable(false);
 		
-		JTextArea char1StatsArea = new JTextArea();
+		char1StatsArea = new JTextArea();
 		char1StatsArea.setOpaque(false);
 		char1StatsArea.setEditable(false);
 		
-		JTextArea char2StatsArea = new JTextArea();
+		char2StatsArea = new JTextArea();
 		char2StatsArea.setOpaque(false);
 		char2StatsArea.setEditable(false);
+		
 		GroupLayout gl_screenPanel = new GroupLayout(screenPanel);
 		gl_screenPanel.setHorizontalGroup(
 			gl_screenPanel.createParallelGroup(Alignment.LEADING)
@@ -118,25 +123,21 @@ public class Vista extends JFrame {
 		userInputPanel.add(userInputText);
 		userInputText.setColumns(80);
 		
-		//JTextArea infoArea = new JTextArea();
-		// Epavez
 		infoArea = new JTextArea();
 		infoArea.setBackground(Color.BLACK);
 		infoArea.setFont(new Font("Arial", Font.PLAIN, 12));
 		infoArea.setForeground(Color.GREEN);
-		infoArea.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent arg0) {
-			}
-		});
-		getContentPane().setLayout(null);
 		infoArea.setEditable(false);
+		DefaultCaret caret = (DefaultCaret)infoArea.getCaret();
+		caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+		
+		getContentPane().setLayout(null);
+		
 		scrollPane.setViewportView(infoArea);
 		getContentPane().add(scrollPane);
 		getContentPane().add(userInputPanel);
 		getContentPane().add(screenPanel);
-		DefaultCaret caret = (DefaultCaret)infoArea.getCaret();
-		caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+		
 		
 	}
 
