@@ -73,10 +73,14 @@ public class Vista extends JFrame {
 		messageArea.setEditable(false);
 		
 		char1StatsArea = new JTextArea();
+		char1StatsArea.setFont(new Font("Arial", Font.BOLD, 18));
+		char1StatsArea.setForeground(Color.YELLOW);
 		char1StatsArea.setOpaque(false);
 		char1StatsArea.setEditable(false);
 		
 		char2StatsArea = new JTextArea();
+		char2StatsArea.setFont(new Font("Arial", Font.BOLD, 18));
+		char2StatsArea.setForeground(Color.YELLOW);
 		char2StatsArea.setOpaque(false);
 		char2StatsArea.setEditable(false);
 		
