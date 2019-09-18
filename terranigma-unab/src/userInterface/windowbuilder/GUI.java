@@ -3,6 +3,7 @@ package userInterface.windowbuilder;
 import java.util.concurrent.TimeUnit;
 
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import userInterface.UserInterface;
@@ -167,8 +168,33 @@ public class GUI implements UserInterface {
 	 * Animacion del personaje al recibir danno
 	 * 
 	 */
-	public void takeDamage() {
+	public void takeDamage(Character ch) {
+		JLabel lblCharX;
+		if (ch.equals(this.char1)) {
+			lblCharX = window.lblChar1;
+		} else {
+			lblCharX = window.lblChar2;
+		}
 		
+		int x = lblCharX.getX();
+		int y = lblCharX.getY();
+		
+		lblCharX.setLocation(x - 30, y);
+		this.waitMS(300);
+		lblCharX.setLocation(x + 30, y);
+		this.waitMS(300);
+		lblCharX.setLocation(x - 30, y);
+		this.waitMS(300);
+		lblCharX.setLocation(x + 30, y);
+		
+	}
+	
+	private void waitMS(int n) {
+		try {
+		    TimeUnit.MILLISECONDS.sleep(n);
+		} catch (InterruptedException ie) {
+		    Thread.currentThread().interrupt();
+		}
 	}
 	
 	/**

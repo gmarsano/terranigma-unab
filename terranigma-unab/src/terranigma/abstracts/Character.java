@@ -121,7 +121,7 @@ public abstract class Character implements CanQueue {
 		UI.get().message(message);
 		
 		if (UI.isGUI()) {
-			UI.getGUI().takeDamage();
+			UI.getGUI().takeDamage(this);
 		}
 		
 		if (!this.isAlive()) {

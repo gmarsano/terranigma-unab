@@ -30,7 +30,6 @@ public class Vista extends JFrame {
 	public JPanel userInputPanel;
 	public JLabel lblChar1;
 	public JLabel lblChar2;
-	public JTextArea messageArea;
 	public JTextArea char1StatsArea;
 	public JTextArea char2StatsArea;
 	
@@ -64,13 +63,9 @@ public class Vista extends JFrame {
 		userInputPanel = new JPanel();
 		userInputPanel.setBounds(10, 626, 998, 103);
 		
-		lblChar1 = new JLabel("CHAR 1");
+		lblChar1 = new JLabel("");
 		
-		lblChar2 = new JLabel("CHAR 2");
-		
-		messageArea = new JTextArea();
-		messageArea.setOpaque(false);
-		messageArea.setEditable(false);
+		lblChar2 = new JLabel("");
 		
 		char1StatsArea = new JTextArea();
 		char1StatsArea.setFont(new Font("Arial", Font.BOLD, 18));
@@ -94,7 +89,6 @@ public class Vista extends JFrame {
 							.addComponent(char1StatsArea, GroupLayout.PREFERRED_SIZE, 313, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED, 275, Short.MAX_VALUE)
 							.addComponent(char2StatsArea, GroupLayout.PREFERRED_SIZE, 313, GroupLayout.PREFERRED_SIZE))
-						.addComponent(messageArea, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 901, Short.MAX_VALUE)
 						.addGroup(gl_screenPanel.createSequentialGroup()
 							.addComponent(lblChar1, GroupLayout.PREFERRED_SIZE, 219, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED, 442, Short.MAX_VALUE)
@@ -105,12 +99,10 @@ public class Vista extends JFrame {
 			gl_screenPanel.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_screenPanel.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(messageArea, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_screenPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(char1StatsArea, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
-						.addComponent(char2StatsArea, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
+						.addComponent(char1StatsArea, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+						.addComponent(char2StatsArea, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE))
+					.addGap(25)
 					.addGroup(gl_screenPanel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblChar1, GroupLayout.PREFERRED_SIZE, 207, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblChar2, GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE))
