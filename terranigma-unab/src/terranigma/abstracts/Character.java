@@ -33,6 +33,7 @@ public abstract class Character implements CanQueue {
 	protected Character enemy;
 	protected List<Effect> effects;
 	protected List<Ability> abilities;
+	protected String iconUri;
 	
 	
 	public Character(
@@ -120,14 +121,14 @@ public abstract class Character implements CanQueue {
 		UI.get().message(message);
 		
 		if (UI.isGUI()) {
-			UI.getGUI().takeDamage();
+			UI.getGUI().takeDamage(this);
 		}
 		
 		if (!this.isAlive()) {
 			this.derrotado();
 			
 			if (UI.isGUI()) {
-				UI.getGUI().defeated();
+				UI.getGUI().defeated(this);
 			}
 		}
 	}
@@ -405,6 +406,10 @@ public abstract class Character implements CanQueue {
 		this.say(this.actMessage);
 		this.showStats();
 		
+		if (UI.isGUI()) {
+			UI.getGUI().toggleTurnPointer(this);
+		}
+		
 		response = UI.get().getListResponse(options);
 		
 		if (response.equals(options[0])) {
@@ -416,6 +421,10 @@ public abstract class Character implements CanQueue {
 		} else if(response.equals(options[2])) {
 			this.defend();
 			this.setCt(this.getCt() - 60);
+		}
+		
+		if (UI.isGUI()) {
+			UI.getGUI().toggleTurnPointer(this);
 		}
 		
 		this.dequeue();
@@ -478,6 +487,20 @@ public abstract class Character implements CanQueue {
 		if (this.hasEffect(e)) {
 			this.effects.remove(e);			
 		}
+	}
+
+	/**
+	 * @return the iconUri
+	 */
+	public String getIconUri() {
+		return iconUri;
+	}
+
+	/**
+	 * @param iconUri the iconUri to set
+	 */
+	public void setIconUri(String iconUri) {
+		this.iconUri = iconUri;
 	}
 
 }

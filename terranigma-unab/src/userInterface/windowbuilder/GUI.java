@@ -2,6 +2,8 @@ package userInterface.windowbuilder;
 
 import java.util.concurrent.TimeUnit;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import userInterface.UserInterface;
@@ -20,7 +22,7 @@ public class GUI implements UserInterface {
 	
 	/*
 	 * Permite esperar una respuesta del usuario esperando el cambio de estado de
-	 * la variable de sincronización de la vista
+	 * la variable de sincronizaciï¿½n de la vista
 	 */
 	private void waitUserResponse() {
 		JTextField textField = window.getUserInputText();
@@ -58,7 +60,7 @@ public class GUI implements UserInterface {
 				response = list[index];
 				return response;
 			} catch (Exception e) {
-				this.message("Opción inválida. Intente de nuevo...");
+				this.message("Opciï¿½n invï¿½lida. Intente de nuevo...");
 			}
 			
 		}
@@ -97,16 +99,16 @@ public class GUI implements UserInterface {
 		    System.out.format("%-6s%-12s%-6s%-8s\n", row);
 		} */
 		
-		// Llamar a función de reemplazo en GUI
+		// Llamar a funciï¿½n de reemplazo en GUI
 		this.refreshStats();
 	}
 	
 	/**
-	 * ***** Metodos de GUI para animaciones y visualización de información *****
+	 * ***** Metodos de GUI para animaciones y visualizaciï¿½n de informaciï¿½n *****
 	 */
 	
 	/**
-	 * Lanza la presentación del juego
+	 * Lanza la presentaciï¿½n del juego
 	 * 
 	 */
 	public void gameIntro() {
@@ -115,43 +117,141 @@ public class GUI implements UserInterface {
 	}
 	
 	/**
-	 * Recibe personajes e inicializa la vusualización de la batalla
+	 * Recibe personajes e inicializa la vusualizaciï¿½n de la batalla
 	 * 
 	 */
 	public void gameStart(Character char1, Character char2) {
+		this.char1 = char1;
+		this.char2 = char2;
+		
 		// Cargar fondo de batalla
-		window.getContentPane()
+		window.screenPanel.changeImage("/userInterface/windowbuilder/images/battlefield.png");
+		
 		
 		// Cargar imagenes de personajes
+		ImageIcon icon = new ImageIcon(new ImageIcon(getClass().getResource(char1.getIconUri())).getImage());
+		window.lblChar1.setIcon(icon);
+		
+		icon = new ImageIcon(new ImageIcon(getClass().getResource(char2.getIconUri())).getImage());
+		window.lblChar2.setIcon(icon);
 		
 		// Cargar paneles de atributos
 		
 		
 	}
 	
-	
 	/**
-	 * Refresca los paneles de información de atributos de los personajes
+	 * Refresca los paneles de informacion de atributos de los personajes
 	 * 
 	 */
 	public void refreshStats() {
+
+		String message = getCharacterStats(this.char1);
+		window.char1StatsArea.setText(message);
+		
+		message = getCharacterStats(this.char2);
+		window.char2StatsArea.setText(message);
+	}
+	
+	public String getCharacterStats(Character charX) {
+		String message;
+		
+		//System.lineSeparator()
+		
+		//message = "Jugador: " + charX.getPlayerName() + "\t	Personaje:" + charX.getName() + System.lineSeparator();
+		message = "Jugador: " + charX.getPlayerName() + System.lineSeparator();
+		message = message + "HP: " + charX.getHp() + "/" + charX.getMaxHp();
+		message = message + "\tMP: " + charX.getMp() + "/" + charX.getMaxMp() + System.lineSeparator();
+		message = message + "STR: " + charX.getStr() + "\tDEF: " + charX.getDef() + System.lineSeparator();
+		message = message + "WIS: " + charX.getWis() + "	SP: " + charX.getSp(); 
+				
+		return message;
+	}
+	/**
+	 * Animacion del personaje al recibir danno
+	 * 
+	 */
+	public void takeDamage(Character ch) {
+		
+		JLabel lblCharX = this.getCharLabel(ch);
+		
+		int x = lblCharX.getX();
+		int y = lblCharX.getY();
+		
+		lblCharX.setLocation(x - 30, y);
+		this.waitMS(250);
+		lblCharX.setLocation(x + 30, y);
+		this.waitMS(250);
+		lblCharX.setLocation(x - 30, y);
+		this.waitMS(250);
+		lblCharX.setLocation(x + 30, y);
 		
 	}
 	
-	/**
-	 * Animación del personaje al recibir daño
-	 * 
-	 */
-	public void takeDamage() {
+	private void waitMS(int n) {
+		try {
+		    TimeUnit.MILLISECONDS.sleep(n);
+		} catch (InterruptedException ie) {
+		    Thread.currentThread().interrupt();
+		}
+	}
+	
+	public JLabel getCharLabel(Character ch) {
 		
+		if (ch.equals(this.char1)) {
+			return window.lblChar1;
+		} else {
+			return window.lblChar2;
+		}
 	}
 	
 	/**
-	 * Animación del personaje derrotado al recibir golpe mortal
+	 * Animaciï¿½n del personaje derrotado al recibir golpe mortal
 	 * 
 	 */
-	public void defeated() {
+	public void defeated(Character ch) {
+		this.refreshStats();
 		
+		JLabel lblCharX = this.getCharLabel(ch);
+		
+		int x = lblCharX.getX();
+		int y = lblCharX.getY();
+		
+		lblCharX.setLocation(x, y + 10);
+		this.waitMS(200);
+		lblCharX.setLocation(x, y);
+		this.waitMS(200);
+		lblCharX.setLocation(x, y - 10);
+		this.waitMS(200);
+		lblCharX.setLocation(x, y - 20);
+		this.waitMS(200);
+		lblCharX.setLocation(x, y - 30);
+		this.waitMS(200);
+		lblCharX.setLocation(x, y - 40);
+		
+		lblCharX.setVisible(false);
+		
+	}
+	
+	public void toggleTurnPointer(Character ch) {
+		
+		JLabel lblPointer = this.getTurnPointerLabel(ch);
+		
+		if (lblPointer.isVisible()) {
+			lblPointer.setVisible(false);
+		} else {
+			lblPointer.setVisible(true);
+		}
+		
+	}
+	
+	public JLabel getTurnPointerLabel(Character ch) {
+		
+		if (ch.equals(this.char1)) {
+			return window.lblChar1Pointer;
+		} else {
+			return window.lblChar2Pointer;
+		}
 	}
 	
 }

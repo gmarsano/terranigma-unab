@@ -16,6 +16,7 @@ public class Ark extends Character {
 				);
 		this.abilities.add(new Agility(this));
 		this.abilities.add(new Meditate(this));
+		this.iconUri = "/userInterface/windowbuilder/images/Ark.png";
 	}
 
 	@Override
@@ -23,7 +24,7 @@ public class Ark extends Character {
 		// TODO Auto-generated method stub
 		String message;
 		// Configuración del poder de ataque
-		int dmg = (int) Math.round(0.2*this.getStr()*0.3*this.getSp());
+		int dmg = (int) Math.round(0.2*this.getStr()*0.25*this.getSp());
 		
 		message = this.name + " ha lanzado un ataque!";
 		UI.get().message(message);

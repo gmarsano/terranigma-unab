@@ -19,17 +19,24 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import javax.swing.JLabel;
 import javax.swing.JTextPane;
+import java.util.Locale;
 
 public class Vista extends JFrame {
 	
 	private boolean waitForResponse;
 	private JTextField userInputText;
 	private JTextArea infoArea;
-	private JPanel screenPanel;
-	private JScrollPane scrollPane;
-	private JPanel userInputPanel;
-	private JLabel lblChar1;
-	private JLabel lblChar2;
+	public PanelImagen screenPanel;
+	public JScrollPane scrollPane;
+	public JPanel userInputPanel;
+	public JLabel lblChar1;
+	public JLabel lblChar2;
+	public JTextArea char1StatsArea;
+	public JTextArea char2StatsArea;
+	private JLabel lblSalir;
+	public JLabel lblChar1Pointer;
+	public JLabel lblChar2Pointer;
+	
 	
 	/**
 	 * Create the application.
@@ -60,21 +67,32 @@ public class Vista extends JFrame {
 		userInputPanel = new JPanel();
 		userInputPanel.setBounds(10, 626, 998, 103);
 		
-		lblChar1 = new JLabel("New label");
+		lblChar1 = new JLabel("");
 		
-		lblChar2 = new JLabel("New label");
+		lblChar2 = new JLabel("");
 		
-		JTextArea messageArea = new JTextArea();
-		messageArea.setOpaque(false);
-		messageArea.setEditable(false);
-		
-		JTextArea char1StatsArea = new JTextArea();
+		char1StatsArea = new JTextArea();
+		char1StatsArea.setFont(new Font("Arial", Font.BOLD, 14));
+		char1StatsArea.setForeground(Color.YELLOW);
 		char1StatsArea.setOpaque(false);
 		char1StatsArea.setEditable(false);
 		
-		JTextArea char2StatsArea = new JTextArea();
+		char2StatsArea = new JTextArea();
+		char2StatsArea.setFont(new Font("Arial", Font.BOLD, 14));
+		char2StatsArea.setForeground(Color.YELLOW);
 		char2StatsArea.setOpaque(false);
 		char2StatsArea.setEditable(false);
+		
+		lblChar1Pointer = new JLabel("<<");
+		lblChar1Pointer.setVisible(false);
+		lblChar1Pointer.setFont(new Font("Arial", Font.BOLD, 36));
+		lblChar1Pointer.setForeground(Color.YELLOW);
+		
+		lblChar2Pointer = new JLabel(">>");
+		lblChar2Pointer.setVisible(false);
+		lblChar2Pointer.setForeground(Color.YELLOW);
+		lblChar2Pointer.setFont(new Font("Arial", Font.BOLD, 36));
+		
 		GroupLayout gl_screenPanel = new GroupLayout(screenPanel);
 		gl_screenPanel.setHorizontalGroup(
 			gl_screenPanel.createParallelGroup(Alignment.LEADING)
@@ -85,10 +103,13 @@ public class Vista extends JFrame {
 							.addComponent(char1StatsArea, GroupLayout.PREFERRED_SIZE, 313, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED, 275, Short.MAX_VALUE)
 							.addComponent(char2StatsArea, GroupLayout.PREFERRED_SIZE, 313, GroupLayout.PREFERRED_SIZE))
-						.addComponent(messageArea, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 901, Short.MAX_VALUE)
 						.addGroup(gl_screenPanel.createSequentialGroup()
 							.addComponent(lblChar1, GroupLayout.PREFERRED_SIZE, 219, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, 442, Short.MAX_VALUE)
+							.addGap(76)
+							.addComponent(lblChar1Pointer, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 209, Short.MAX_VALUE)
+							.addComponent(lblChar2Pointer, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
+							.addGap(67)
 							.addComponent(lblChar2, GroupLayout.PREFERRED_SIZE, 240, GroupLayout.PREFERRED_SIZE)))
 					.addGap(55))
 		);
@@ -96,47 +117,61 @@ public class Vista extends JFrame {
 			gl_screenPanel.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_screenPanel.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(messageArea, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_screenPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(char1StatsArea, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
-						.addComponent(char2StatsArea, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_screenPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblChar1, GroupLayout.PREFERRED_SIZE, 207, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblChar2, GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE))
-					.addGap(24))
+					.addGroup(gl_screenPanel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_screenPanel.createSequentialGroup()
+							.addGroup(gl_screenPanel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(char1StatsArea, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+								.addComponent(char2StatsArea, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE))
+							.addGap(25)
+							.addGroup(gl_screenPanel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblChar1, GroupLayout.PREFERRED_SIZE, 207, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblChar2, GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE))
+							.addGap(24))
+						.addGroup(Alignment.TRAILING, gl_screenPanel.createSequentialGroup()
+							.addGroup(gl_screenPanel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblChar1Pointer, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblChar2Pointer, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE))
+							.addGap(160))))
 		);
 		screenPanel.setLayout(gl_screenPanel);
 		
 		JButton btnSendInput = new JButton("Enviar");
+		btnSendInput.setBounds(20, 5, 69, 23);
 		btnSendInput.addActionListener(new UserResponseListener(this));
+		userInputPanel.setLayout(null);
 		userInputPanel.add(btnSendInput);
 		this.getRootPane().setDefaultButton(btnSendInput);
 		
 		userInputText = new JTextField();
+		userInputText.setLocale(new Locale("es", "CL"));
+		userInputText.setFont(new Font("Arial", Font.PLAIN, 12));
+		userInputText.setBounds(96, 6, 646, 20);
 		userInputPanel.add(userInputText);
-		userInputText.setColumns(80);
+		userInputText.setColumns(20);
 		
-		//JTextArea infoArea = new JTextArea();
-		// Epavez
 		infoArea = new JTextArea();
 		infoArea.setBackground(Color.BLACK);
 		infoArea.setFont(new Font("Arial", Font.PLAIN, 12));
 		infoArea.setForeground(Color.GREEN);
-		infoArea.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent arg0) {
-			}
-		});
-		getContentPane().setLayout(null);
 		infoArea.setEditable(false);
+		DefaultCaret caret = (DefaultCaret)infoArea.getCaret();
+		caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+		
+		getContentPane().setLayout(null);
+		
 		scrollPane.setViewportView(infoArea);
 		getContentPane().add(scrollPane);
 		getContentPane().add(userInputPanel);
+		
+		lblSalir = new JLabel("Para terminar escriba SALIR y presione ENTER");
+		lblSalir.setForeground(Color.BLACK);
+		lblSalir.setBounds(96, 30, 277, 13);
+		lblSalir.setFont(new Font("Arial", Font.BOLD, 12));
+		lblSalir.setFocusable(false);
+		lblSalir.setEnabled(false);
+		userInputPanel.add(lblSalir);
 		getContentPane().add(screenPanel);
-		DefaultCaret caret = (DefaultCaret)infoArea.getCaret();
-		caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+		
 		
 	}
 
