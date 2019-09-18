@@ -156,11 +156,13 @@ public class GUI implements UserInterface {
 	public String getCharacterStats(Character charX) {
 		String message;
 		
-		message = "Jugador: " + charX.getPlayerName() + "Personaje: " + charX.getName();
-		message = message + " HP: " + charX.getHp() + "/" + charX.getMaxHp();
-		message = message + " MP: " + charX.getMp() + "/" + charX.getMaxMp();
-		message = message + " STR: " + charX.getStr() + " DEF: " + charX.getDef();
-		message = message + " WIS: " + charX.getWis() + " SP: " + charX.getSp(); 
+		//System.lineSeparator()
+		
+		message = "Jugador: " + charX.getPlayerName() + "\t	Personaje:" + charX.getName() + System.lineSeparator();
+		message = message + "HP: " + charX.getHp() + "/" + charX.getMaxHp();
+		message = message + "\t	MP: " + charX.getMp() + "/" + charX.getMaxMp() + System.lineSeparator();
+		message = message + "STR: " + charX.getStr() + "\t DEF: " + charX.getDef();
+		message = message + "\t	WIS: " + charX.getWis() + "	SP: " + charX.getSp(); 
 				
 		return message;
 	}
