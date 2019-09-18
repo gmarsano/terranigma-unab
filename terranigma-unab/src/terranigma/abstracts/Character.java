@@ -128,7 +128,7 @@ public abstract class Character implements CanQueue {
 			this.derrotado();
 			
 			if (UI.isGUI()) {
-				UI.getGUI().defeated();
+				UI.getGUI().defeated(this);
 			}
 		}
 	}
@@ -406,6 +406,10 @@ public abstract class Character implements CanQueue {
 		this.say(this.actMessage);
 		this.showStats();
 		
+		if (UI.isGUI()) {
+			UI.getGUI().toggleTurnPointer(this);
+		}
+		
 		response = UI.get().getListResponse(options);
 		
 		if (response.equals(options[0])) {
@@ -417,6 +421,10 @@ public abstract class Character implements CanQueue {
 		} else if(response.equals(options[2])) {
 			this.defend();
 			this.setCt(this.getCt() - 60);
+		}
+		
+		if (UI.isGUI()) {
+			UI.getGUI().toggleTurnPointer(this);
 		}
 		
 		this.dequeue();

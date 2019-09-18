@@ -34,6 +34,8 @@ public class Vista extends JFrame {
 	public JTextArea char1StatsArea;
 	public JTextArea char2StatsArea;
 	private JLabel lblSalir;
+	public JLabel lblChar1Pointer;
+	public JLabel lblChar2Pointer;
 	
 	
 	/**
@@ -81,6 +83,16 @@ public class Vista extends JFrame {
 		char2StatsArea.setOpaque(false);
 		char2StatsArea.setEditable(false);
 		
+		lblChar1Pointer = new JLabel("<<");
+		lblChar1Pointer.setVisible(false);
+		lblChar1Pointer.setFont(new Font("Arial", Font.BOLD, 36));
+		lblChar1Pointer.setForeground(Color.YELLOW);
+		
+		lblChar2Pointer = new JLabel(">>");
+		lblChar2Pointer.setVisible(false);
+		lblChar2Pointer.setForeground(Color.YELLOW);
+		lblChar2Pointer.setFont(new Font("Arial", Font.BOLD, 36));
+		
 		GroupLayout gl_screenPanel = new GroupLayout(screenPanel);
 		gl_screenPanel.setHorizontalGroup(
 			gl_screenPanel.createParallelGroup(Alignment.LEADING)
@@ -93,7 +105,11 @@ public class Vista extends JFrame {
 							.addComponent(char2StatsArea, GroupLayout.PREFERRED_SIZE, 313, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_screenPanel.createSequentialGroup()
 							.addComponent(lblChar1, GroupLayout.PREFERRED_SIZE, 219, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, 442, Short.MAX_VALUE)
+							.addGap(76)
+							.addComponent(lblChar1Pointer, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 209, Short.MAX_VALUE)
+							.addComponent(lblChar2Pointer, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
+							.addGap(67)
 							.addComponent(lblChar2, GroupLayout.PREFERRED_SIZE, 240, GroupLayout.PREFERRED_SIZE)))
 					.addGap(55))
 		);
@@ -101,14 +117,21 @@ public class Vista extends JFrame {
 			gl_screenPanel.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_screenPanel.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(gl_screenPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(char1StatsArea, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
-						.addComponent(char2StatsArea, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE))
-					.addGap(25)
-					.addGroup(gl_screenPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblChar1, GroupLayout.PREFERRED_SIZE, 207, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblChar2, GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE))
-					.addGap(24))
+					.addGroup(gl_screenPanel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_screenPanel.createSequentialGroup()
+							.addGroup(gl_screenPanel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(char1StatsArea, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+								.addComponent(char2StatsArea, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE))
+							.addGap(25)
+							.addGroup(gl_screenPanel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblChar1, GroupLayout.PREFERRED_SIZE, 207, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblChar2, GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE))
+							.addGap(24))
+						.addGroup(Alignment.TRAILING, gl_screenPanel.createSequentialGroup()
+							.addGroup(gl_screenPanel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblChar1Pointer, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblChar2Pointer, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE))
+							.addGap(160))))
 		);
 		screenPanel.setLayout(gl_screenPanel);
 		

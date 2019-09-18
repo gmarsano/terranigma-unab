@@ -172,22 +172,18 @@ public class GUI implements UserInterface {
 	 * 
 	 */
 	public void takeDamage(Character ch) {
-		JLabel lblCharX;
-		if (ch.equals(this.char1)) {
-			lblCharX = window.lblChar1;
-		} else {
-			lblCharX = window.lblChar2;
-		}
+		
+		JLabel lblCharX = this.getCharLabel(ch);
 		
 		int x = lblCharX.getX();
 		int y = lblCharX.getY();
 		
 		lblCharX.setLocation(x - 30, y);
-		this.waitMS(300);
+		this.waitMS(250);
 		lblCharX.setLocation(x + 30, y);
-		this.waitMS(300);
+		this.waitMS(250);
 		lblCharX.setLocation(x - 30, y);
-		this.waitMS(300);
+		this.waitMS(250);
 		lblCharX.setLocation(x + 30, y);
 		
 	}
@@ -200,12 +196,62 @@ public class GUI implements UserInterface {
 		}
 	}
 	
+	public JLabel getCharLabel(Character ch) {
+		
+		if (ch.equals(this.char1)) {
+			return window.lblChar1;
+		} else {
+			return window.lblChar2;
+		}
+	}
+	
 	/**
 	 * Animaci�n del personaje derrotado al recibir golpe mortal
 	 * 
 	 */
-	public void defeated() {
+	public void defeated(Character ch) {
+		this.refreshStats();
 		
+		JLabel lblCharX = this.getCharLabel(ch);
+		
+		int x = lblCharX.getX();
+		int y = lblCharX.getY();
+		
+		lblCharX.setLocation(x, y + 10);
+		this.waitMS(200);
+		lblCharX.setLocation(x, y);
+		this.waitMS(200);
+		lblCharX.setLocation(x, y - 10);
+		this.waitMS(200);
+		lblCharX.setLocation(x, y - 20);
+		this.waitMS(200);
+		lblCharX.setLocation(x, y - 30);
+		this.waitMS(200);
+		lblCharX.setLocation(x, y - 40);
+		
+		lblCharX.setVisible(false);
+		
+	}
+	
+	public void toggleTurnPointer(Character ch) {
+		
+		JLabel lblPointer = this.getTurnPointerLabel(ch);
+		
+		if (lblPointer.isVisible()) {
+			lblPointer.setVisible(false);
+		} else {
+			lblPointer.setVisible(true);
+		}
+		
+	}
+	
+	public JLabel getTurnPointerLabel(Character ch) {
+		
+		if (ch.equals(this.char1)) {
+			return window.lblChar1Pointer;
+		} else {
+			return window.lblChar2Pointer;
+		}
 	}
 	
 }
