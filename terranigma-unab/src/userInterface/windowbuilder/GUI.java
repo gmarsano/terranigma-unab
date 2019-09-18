@@ -158,11 +158,12 @@ public class GUI implements UserInterface {
 		
 		//System.lineSeparator()
 		
-		message = "Jugador: " + charX.getPlayerName() + "\t	Personaje:" + charX.getName() + System.lineSeparator();
+		//message = "Jugador: " + charX.getPlayerName() + "\t	Personaje:" + charX.getName() + System.lineSeparator();
+		message = "Jugador: " + charX.getPlayerName() + System.lineSeparator();
 		message = message + "HP: " + charX.getHp() + "/" + charX.getMaxHp();
-		message = message + "\t	MP: " + charX.getMp() + "/" + charX.getMaxMp() + System.lineSeparator();
-		message = message + "STR: " + charX.getStr() + "\t DEF: " + charX.getDef();
-		message = message + "\t	WIS: " + charX.getWis() + "	SP: " + charX.getSp(); 
+		message = message + "\tMP: " + charX.getMp() + "/" + charX.getMaxMp() + System.lineSeparator();
+		message = message + "STR: " + charX.getStr() + "\tDEF: " + charX.getDef() + System.lineSeparator();
+		message = message + "WIS: " + charX.getWis() + "	SP: " + charX.getSp(); 
 				
 		return message;
 	}

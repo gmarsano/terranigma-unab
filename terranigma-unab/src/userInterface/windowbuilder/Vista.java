@@ -19,6 +19,7 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import javax.swing.JLabel;
 import javax.swing.JTextPane;
+import java.util.Locale;
 
 public class Vista extends JFrame {
 	
@@ -32,6 +33,7 @@ public class Vista extends JFrame {
 	public JLabel lblChar2;
 	public JTextArea char1StatsArea;
 	public JTextArea char2StatsArea;
+	private JLabel lblSalir;
 	
 	
 	/**
@@ -68,13 +70,13 @@ public class Vista extends JFrame {
 		lblChar2 = new JLabel("");
 		
 		char1StatsArea = new JTextArea();
-		char1StatsArea.setFont(new Font("Arial", Font.BOLD, 18));
+		char1StatsArea.setFont(new Font("Arial", Font.BOLD, 14));
 		char1StatsArea.setForeground(Color.YELLOW);
 		char1StatsArea.setOpaque(false);
 		char1StatsArea.setEditable(false);
 		
 		char2StatsArea = new JTextArea();
-		char2StatsArea.setFont(new Font("Arial", Font.BOLD, 18));
+		char2StatsArea.setFont(new Font("Arial", Font.BOLD, 14));
 		char2StatsArea.setForeground(Color.YELLOW);
 		char2StatsArea.setOpaque(false);
 		char2StatsArea.setEditable(false);
@@ -111,13 +113,18 @@ public class Vista extends JFrame {
 		screenPanel.setLayout(gl_screenPanel);
 		
 		JButton btnSendInput = new JButton("Enviar");
+		btnSendInput.setBounds(20, 5, 69, 23);
 		btnSendInput.addActionListener(new UserResponseListener(this));
+		userInputPanel.setLayout(null);
 		userInputPanel.add(btnSendInput);
 		this.getRootPane().setDefaultButton(btnSendInput);
 		
 		userInputText = new JTextField();
+		userInputText.setLocale(new Locale("es", "CL"));
+		userInputText.setFont(new Font("Arial", Font.PLAIN, 12));
+		userInputText.setBounds(96, 6, 646, 20);
 		userInputPanel.add(userInputText);
-		userInputText.setColumns(80);
+		userInputText.setColumns(20);
 		
 		infoArea = new JTextArea();
 		infoArea.setBackground(Color.BLACK);
@@ -132,6 +139,14 @@ public class Vista extends JFrame {
 		scrollPane.setViewportView(infoArea);
 		getContentPane().add(scrollPane);
 		getContentPane().add(userInputPanel);
+		
+		lblSalir = new JLabel("Para terminar escriba SALIR y presione ENTER");
+		lblSalir.setForeground(Color.BLACK);
+		lblSalir.setBounds(96, 30, 277, 13);
+		lblSalir.setFont(new Font("Arial", Font.BOLD, 12));
+		lblSalir.setFocusable(false);
+		lblSalir.setEnabled(false);
+		userInputPanel.add(lblSalir);
 		getContentPane().add(screenPanel);
 		
 		
